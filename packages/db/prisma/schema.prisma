@@ -10,7 +10,7 @@ datasource db {
 model User {
   id  String @id @default(uuid())
   name  String
-  email String
+  username String @unique
   password String
   chats chatmember[]
   messages message[]
@@ -33,7 +33,7 @@ model chatmember {
 }
 
 model message {
-  id String @id @default(uuid())
+  id Int @id @default(autoincrement())
   time DateTime @default(now())
   userId String
   user User @relation(fields: [userId],references: [id])
